@@ -409,10 +409,10 @@
         };
 
         const correctClues = {
-            1: 'Ты находишь кусочек шифра: <strong>al</strong>',
-            2: 'Ты находишь кусочек шифра: <strong>sm</strong>',
-            3: 'Ты находишь кусочек шифра: <strong>roy</strong>',
-            4: 'Ты находишь кусочек шифра: <strong>all</strong>'
+            1: '<strong>al</strong>',
+            2: '<strong>sm</strong>',
+            3: '<strong>roy</strong>',
+            4: '<strong>all</strong>'
         };
         
         let completedTasks = 0;
@@ -450,7 +450,7 @@
             const card = feedbackElement.closest('.grid-item');
 
             if (isCorrect) {
-                feedbackElement.innerHTML = correctClues[itemId];
+                feedbackElement.innerHTML = 'Ты находишь кусочек шифра: ' + correctClues[itemId];
                 feedbackElement.className = "feedback correct";
                 
                 if (!card.classList.contains('completed')) {
@@ -460,8 +460,11 @@
                     
                     // Change the question mark on the front to a checkmark
                     const questionMark = card.querySelector('.question-mark');
-                    questionMark.textContent = "✓";
+                    questionMark.innerHTML = correctClues[itemId];
                     questionMark.style.color = "#b7e4c7";
+
+                    const cardLabel = card.querySelector('.card-label');
+                    cardLabel.textContent = '';
                 }
             } else {
                 feedbackElement.textContent = `Что-то не так... Попробуй еще раз или выбери «Помощь котя» (напиши котю в тг)`;
